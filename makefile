@@ -1,8 +1,11 @@
-default: github/xfce-mirror/xfce4-terminal.rwkv.json
+default: github.com/xfce-mirror/xfce4-terminal.rwkv.json
 
-github/%.rwkv.json: github/%.git/
+extra: default
+
+%.rwkv.json: %.git/
 	{ git2jsonl/git2jsonl "$^"; git2jsonl/git2jsonl_base64 "$^"; } | sort --random-sort --random-source=/dev/zero > "$@" || { rm "$@"; false; }
+	rm -rf "$<"
 
-github/%.git/:
+%.git/:
 	mkdir -p "$$(dirname "$*")"
-	git clone --mirror https://github.com/"$*" "$@"
+	git clone --mirror https://"$*" "$@"
