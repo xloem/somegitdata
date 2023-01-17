@@ -1,0 +1,3 @@
+[submodule "git2jsonl"]
+	path = git2jsonl
+	url = https://github.com/xloem/git2jsonl
